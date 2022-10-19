@@ -1,0 +1,56 @@
+--- main.c	2022-09-13 16:59:00.282606533 +0000
++++ main2.c	2022-09-09 16:32:59.493658828 +0000
+@@ -94,7 +94,7 @@
+ 
+ static vsi_status vnn_ProcessGraph
+     (
+-    vsi_nn_graph_t *graph
++    vsi_nn_graph_t *graph, unsigned int loops
+     )
+ {
+     vsi_status status = VSI_FAILURE;
+@@ -104,7 +104,7 @@
+     float msVal, usVal;
+ 
+     status = VSI_FAILURE;
+-    loop = 1; /* default loop time is 1 */
++    loop = loops; /* default loop time is 1 */
+     loop_s = getenv("VNN_LOOP_TIME");
+     if(loop_s)
+     {
+@@ -170,7 +170,7 @@
+      * argv2~n: inputs n file
+      */
+     const char **inputs = (const char **)argv + 2;
+-    uint32_t input_num = argc - 2;
++    uint32_t input_num = argc - 3;
+ 
+     /*
+     if(vnn_UseImagePreprocessNode())
+@@ -215,14 +215,16 @@
+     vsi_status status = VSI_FAILURE;
+     vsi_nn_graph_t *graph;
+     const char *data_name = NULL;
++    unsigned int loops;
+ 
+-    if(argc < 3)
++    if(argc < 4)
+     {
+         printf("Usage: %s data_file inputs...\n", argv[0]);
+         return -1;
+     }
+ 
+     data_name = (const char *)argv[1];
++    loops = atoi(argv[3]);
+ 
+     /* Create the neural network */
+     graph = vnn_CreateNeuralNetwork( data_name );
+@@ -237,7 +239,7 @@
+     TEST_CHECK_STATUS( status, final);
+ 
+     /* Process graph */
+-    status = vnn_ProcessGraph( graph );
++    status = vnn_ProcessGraph( graph ,loops);
+     TEST_CHECK_STATUS( status, final );
+ 
+     if(VNN_APP_DEBUG)
