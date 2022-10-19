@@ -1,14 +1,14 @@
-Create Neural Network: 84047us
-Verify Graph: 38567us
-Run the 1 time: 524027.00us
-Run the 2 time: 522490.00us
-Run the 3 time: 522432.00us
-Run the 4 time: 522506.00us
-Run the 5 time: 523456.00us
-Run the 6 time: 522375.00us
-Run the 7 time: 522196.00us
-Run the 8 time: 522294.00us
-Run the 9 time: 523748.00us
-Run the 10 time: 522288.00us
-Total   : 5228013.00us
-Average : 522801.31us
+Create Neural Network: 91492us
+Verify Graph: 50566us
+Run the 1 time: 1542983.00us
+Run the 2 time: 1538697.00us
+Run the 3 time: 1539738.00us
+Run the 4 time: 1540626.00us
+Run the 5 time: 1540729.00us
+Run the 6 time: 1537278.00us
+Run the 7 time: 1541310.00us
+Run the 8 time: 1539103.00us
+Run the 9 time: 1541940.00us
+Run the 10 time: 1539051.00us
+Total   : 15401659.00us
+Average : 1540165.88us

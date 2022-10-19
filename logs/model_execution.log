@@ -1,23 +1,23 @@
-Create Neural Network: 84ms or 84047us
+Create Neural Network: 91ms or 91492us
 Verify...
-Verify Graph: 38ms or 38567us
+Verify Graph: 50ms or 50566us
 Start run graph [10] times...
-Run the 1 time: 524.00ms or 524027.00us
-Run the 2 time: 522.00ms or 522490.00us
-Run the 3 time: 522.00ms or 522432.00us
-Run the 4 time: 522.00ms or 522506.00us
-Run the 5 time: 523.00ms or 523456.00us
-Run the 6 time: 522.00ms or 522375.00us
-Run the 7 time: 522.00ms or 522196.00us
-Run the 8 time: 522.00ms or 522294.00us
-Run the 9 time: 523.00ms or 523748.00us
-Run the 10 time: 522.00ms or 522288.00us
+Run the 1 time: 1542.00ms or 1542983.00us
+Run the 2 time: 1538.00ms or 1538697.00us
+Run the 3 time: 1539.00ms or 1539738.00us
+Run the 4 time: 1540.00ms or 1540626.00us
+Run the 5 time: 1540.00ms or 1540729.00us
+Run the 6 time: 1537.00ms or 1537278.00us
+Run the 7 time: 1541.00ms or 1541310.00us
+Run the 8 time: 1539.00ms or 1539103.00us
+Run the 9 time: 1541.00ms or 1541940.00us
+Run the 10 time: 1539.00ms or 1539051.00us
 vxProcessGraph execution time:
-Total   5228.00ms or 5228013.00us
-Average 522.80ms or 522801.31us
+Total   15401.00ms or 15401659.00us
+Average 1540.17ms or 1540165.88us
  --- Top5 ---
-16767: 0.501144
-26249: 0.501144
-36273: 0.501144
-39492: 0.501144
-48230: 0.501144
+2556: 0.461897
+4757: 0.461897
+4904: 0.461897
+7444: 0.461897
+8596: 0.461897
