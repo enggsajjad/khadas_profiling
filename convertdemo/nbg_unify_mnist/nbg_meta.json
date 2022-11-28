@@ -1,6 +1,6 @@
 {
     "Inputs": {
-        "input_40": {
+        "input_22": {
             "name": "input",
             "shape": [
                 1,
@@ -22,8 +22,8 @@
         }
     },
     "Outputs": {
-        "attach_Add_Add_68/out0_0": {
-            "name": "attach_Add_Add_68/out0",
+        "attach_Add_Add_41/out0_0": {
+            "name": "attach_Add_Add_41/out0",
             "shape": [
                 1,
                 128,
@@ -35,10 +35,10 @@
             "quantize": {
                 "qtype": "u8",
                 "zero_point": [
-                    127
+                    126
                 ],
                 "scale": [
-                    0.005075792782008648
+                    0.004727776627987623
                 ]
             }
         }

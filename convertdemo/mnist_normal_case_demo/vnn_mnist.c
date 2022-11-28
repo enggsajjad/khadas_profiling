@@ -78,10 +78,10 @@
         }\
     } while(0)
 
-#define NET_NODE_NUM            (40)
+#define NET_NODE_NUM            (22)
 #define NET_NORM_TENSOR_NUM     (2)
-#define NET_CONST_TENSOR_NUM    (37)
-#define NET_VIRTUAL_TENSOR_NUM  (40)
+#define NET_CONST_TENSOR_NUM    (19)
+#define NET_VIRTUAL_TENSOR_NUM  (22)
 #define NET_TOTAL_TENSOR_NUM    (NET_NORM_TENSOR_NUM + NET_CONST_TENSOR_NUM + NET_VIRTUAL_TENSOR_NUM)
 
 /*-------------------------------------------
@@ -202,59 +202,59 @@ vsi_nn_graph_t * vnn_CreateMnist
  -----------------------------------------*/
 
     /*-----------------------------------------
-      lid       - Constant_Cast_19_onnx__Gather_230_as_const_29
+      lid       - Constant_Cast_10_onnx__Gather_122_as_const_19
       var       - node[0]
-      name      - Constant_Cast_19_onnx__Gather_230_as_const
+      name      - Constant_Cast_10_onnx__Gather_122_as_const
       operation - variable
       input     - 
       output    - [1]
     -----------------------------------------*/
-    NEW_VXNODE(node[0], VSI_NN_OP_VARIABLE, 1, 1, 29);
+    NEW_VXNODE(node[0], VSI_NN_OP_VARIABLE, 1, 1, 19);
 
     /*-----------------------------------------
-      lid       - Constant_Cast_19_onnx__Gather_230_as_const_29_dtype_convert_Gather_Gather_20_28
+      lid       - Constant_Cast_10_onnx__Gather_122_as_const_19_dtype_convert_Gather_Gather_11_14
       var       - node[1]
       name      - dtype_converter
       operation - dtype_converter
       input     - [1]
       output    - [1]
     -----------------------------------------*/
-    NEW_VXNODE(node[1], VSI_NN_OP_DATACONVERT, 1, 1, 28);
+    NEW_VXNODE(node[1], VSI_NN_OP_DATACONVERT, 1, 1, 14);
 
     /*-----------------------------------------
-      lid       - Gather_Gather_20_28
+      lid       - Gather_Gather_11_14
       var       - node[2]
-      name      - Gather_Gather_20
+      name      - Gather_Gather_11
       operation - gather
       input     - [12800, 1024, 3, 1]
                   [1]
       output    - [12800, 1024, 1, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[2], VSI_NN_OP_GATHER, 2, 1, 28);
+    NEW_VXNODE(node[2], VSI_NN_OP_GATHER, 2, 1, 14);
     node[2]->nn_param.gather.axis = 2;
 
     /*-----------------------------------------
-      lid       - Reshape_Reshape_32_22
+      lid       - Reshape_Reshape_23_10
       var       - node[3]
-      name      - Reshape_Reshape_32
+      name      - Reshape_Reshape_23
       operation - reshape
       input     - [12800, 1024, 1, 1]
       output    - [320, 320, 128, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[3], VSI_NN_OP_RESHAPE, 1, 1, 22);
+    NEW_VXNODE(node[3], VSI_NN_OP_RESHAPE, 1, 1, 10);
     node[3]->nn_param.reshape.size = shape_1;
     node[3]->nn_param.reshape.dim_num = 4;
 
     /*-----------------------------------------
-      lid       - Conv_Conv_33_38
+      lid       - Conv_Conv_24_20
       var       - node[4]
-      name      - Conv_Conv_33
+      name      - Conv_Conv_24
       operation - convolution
       input     - [320, 320, 128, 1]
       filter    - [1, 1, 128, 768]
       output    - [320, 320, 768, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[4], VSI_NN_OP_CONV2D, 3, 1, 38);
+    NEW_VXNODE(node[4], VSI_NN_OP_CONV2D, 3, 1, 20);
     node[4]->nn_param.conv2d.ksize[0] = 1;
     node[4]->nn_param.conv2d.ksize[1] = 1;
     node[4]->nn_param.conv2d.weights = 768;
@@ -273,25 +273,25 @@ vsi_nn_graph_t * vnn_CreateMnist
     node[4]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
 
     /*-----------------------------------------
-      lid       - Relu_Relu_34_35
+      lid       - Relu_Relu_25_18
       var       - node[5]
-      name      - Relu_Relu_34
+      name      - Relu_Relu_25
       operation - relu
       input     - [320, 320, 768, 1]
       output    - [320, 320, 768, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[5], VSI_NN_OP_RELU, 1, 1, 35);
+    NEW_VXNODE(node[5], VSI_NN_OP_RELU, 1, 1, 18);
 
     /*-----------------------------------------
-      lid       - Conv_Conv_35_34
+      lid       - Conv_Conv_26_17
       var       - node[6]
-      name      - Conv_Conv_35
+      name      - Conv_Conv_26
       operation - convolution
       input     - [320, 320, 768, 1]
       filter    - [3, 3, 768, 1]
       output    - [320, 320, 768, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[6], VSI_NN_OP_CONV2D, 3, 1, 34);
+    NEW_VXNODE(node[6], VSI_NN_OP_CONV2D, 3, 1, 17);
     node[6]->nn_param.conv2d.ksize[0] = 3;
     node[6]->nn_param.conv2d.ksize[1] = 3;
     node[6]->nn_param.conv2d.weights = 768;
@@ -310,25 +310,25 @@ vsi_nn_graph_t * vnn_CreateMnist
     node[6]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
 
     /*-----------------------------------------
-      lid       - Relu_Relu_36_33
+      lid       - Relu_Relu_27_13
       var       - node[7]
-      name      - Relu_Relu_36
+      name      - Relu_Relu_27
       operation - relu
       input     - [320, 320, 768, 1]
       output    - [320, 320, 768, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[7], VSI_NN_OP_RELU, 1, 1, 33);
+    NEW_VXNODE(node[7], VSI_NN_OP_RELU, 1, 1, 13);
 
     /*-----------------------------------------
-      lid       - Conv_Conv_37_27
+      lid       - Conv_Conv_28_9
       var       - node[8]
-      name      - Conv_Conv_37
+      name      - Conv_Conv_28
       operation - convolution
       input     - [320, 320, 768, 1]
       filter    - [1, 1, 768, 128]
       output    - [320, 320, 128, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[8], VSI_NN_OP_CONV2D, 3, 1, 27);
+    NEW_VXNODE(node[8], VSI_NN_OP_CONV2D, 3, 1, 9);
     node[8]->nn_param.conv2d.ksize[0] = 1;
     node[8]->nn_param.conv2d.ksize[1] = 1;
     node[8]->nn_param.conv2d.weights = 128;
@@ -347,26 +347,26 @@ vsi_nn_graph_t * vnn_CreateMnist
     node[8]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
 
     /*-----------------------------------------
-      lid       - Add_Add_38_21
+      lid       - Add_Add_29_6
       var       - node[9]
-      name      - Add_Add_38
+      name      - Add_Add_29
       operation - add
       input     - [320, 320, 128, 1]
                   [320, 320, 128, 1]
       output    - [320, 320, 128, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[9], VSI_NN_OP_ADD, 2, 1, 21);
+    NEW_VXNODE(node[9], VSI_NN_OP_ADD, 2, 1, 6);
 
     /*-----------------------------------------
-      lid       - Conv_Conv_39_39
+      lid       - Conv_Conv_30_21
       var       - node[10]
-      name      - Conv_Conv_39
+      name      - Conv_Conv_30
       operation - convolution
       input     - [320, 320, 128, 1]
       filter    - [1, 1, 128, 768]
       output    - [320, 320, 768, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[10], VSI_NN_OP_CONV2D, 3, 1, 39);
+    NEW_VXNODE(node[10], VSI_NN_OP_CONV2D, 3, 1, 21);
     node[10]->nn_param.conv2d.ksize[0] = 1;
     node[10]->nn_param.conv2d.ksize[1] = 1;
     node[10]->nn_param.conv2d.weights = 768;
@@ -385,25 +385,25 @@ vsi_nn_graph_t * vnn_CreateMnist
     node[10]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
 
     /*-----------------------------------------
-      lid       - Relu_Relu_40_37
+      lid       - Relu_Relu_31_16
       var       - node[11]
-      name      - Relu_Relu_40
+      name      - Relu_Relu_31
       operation - relu
       input     - [320, 320, 768, 1]
       output    - [320, 320, 768, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[11], VSI_NN_OP_RELU, 1, 1, 37);
+    NEW_VXNODE(node[11], VSI_NN_OP_RELU, 1, 1, 16);
 
     /*-----------------------------------------
-      lid       - Conv_Conv_41_32
+      lid       - Conv_Conv_32_12
       var       - node[12]
-      name      - Conv_Conv_41
+      name      - Conv_Conv_32
       operation - convolution
       input     - [320, 320, 768, 1]
       filter    - [3, 3, 768, 1]
       output    - [320, 320, 768, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[12], VSI_NN_OP_CONV2D, 3, 1, 32);
+    NEW_VXNODE(node[12], VSI_NN_OP_CONV2D, 3, 1, 12);
     node[12]->nn_param.conv2d.ksize[0] = 3;
     node[12]->nn_param.conv2d.ksize[1] = 3;
     node[12]->nn_param.conv2d.weights = 768;
@@ -422,25 +422,25 @@ vsi_nn_graph_t * vnn_CreateMnist
     node[12]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
 
     /*-----------------------------------------
-      lid       - Relu_Relu_42_26
+      lid       - Relu_Relu_33_8
       var       - node[13]
-      name      - Relu_Relu_42
+      name      - Relu_Relu_33
       operation - relu
       input     - [320, 320, 768, 1]
       output    - [320, 320, 768, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[13], VSI_NN_OP_RELU, 1, 1, 26);
+    NEW_VXNODE(node[13], VSI_NN_OP_RELU, 1, 1, 8);
 
     /*-----------------------------------------
-      lid       - Conv_Conv_43_20
+      lid       - Conv_Conv_34_5
       var       - node[14]
-      name      - Conv_Conv_43
+      name      - Conv_Conv_34
       operation - convolution
       input     - [320, 320, 768, 1]
       filter    - [1, 1, 768, 128]
       output    - [320, 320, 128, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[14], VSI_NN_OP_CONV2D, 3, 1, 20);
+    NEW_VXNODE(node[14], VSI_NN_OP_CONV2D, 3, 1, 5);
     node[14]->nn_param.conv2d.ksize[0] = 1;
     node[14]->nn_param.conv2d.ksize[1] = 1;
     node[14]->nn_param.conv2d.weights = 128;
@@ -459,26 +459,26 @@ vsi_nn_graph_t * vnn_CreateMnist
     node[14]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
 
     /*-----------------------------------------
-      lid       - Add_Add_44_15
+      lid       - Add_Add_35_3
       var       - node[15]
-      name      - Add_Add_44
+      name      - Add_Add_35
       operation - add
       input     - [320, 320, 128, 1]
                   [320, 320, 128, 1]
       output    - [320, 320, 128, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[15], VSI_NN_OP_ADD, 2, 1, 15);
+    NEW_VXNODE(node[15], VSI_NN_OP_ADD, 2, 1, 3);
 
     /*-----------------------------------------
-      lid       - Conv_Conv_45_36
+      lid       - Conv_Conv_36_15
       var       - node[16]
-      name      - Conv_Conv_45
+      name      - Conv_Conv_36
       operation - convolution
       input     - [320, 320, 128, 1]
       filter    - [1, 1, 128, 768]
       output    - [320, 320, 768, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[16], VSI_NN_OP_CONV2D, 3, 1, 36);
+    NEW_VXNODE(node[16], VSI_NN_OP_CONV2D, 3, 1, 15);
     node[16]->nn_param.conv2d.ksize[0] = 1;
     node[16]->nn_param.conv2d.ksize[1] = 1;
     node[16]->nn_param.conv2d.weights = 768;
@@ -497,25 +497,25 @@ vsi_nn_graph_t * vnn_CreateMnist
     node[16]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
 
     /*-----------------------------------------
-      lid       - Relu_Relu_46_31
+      lid       - Relu_Relu_37_11
       var       - node[17]
-      name      - Relu_Relu_46
+      name      - Relu_Relu_37
       operation - relu
       input     - [320, 320, 768, 1]
       output    - [320, 320, 768, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[17], VSI_NN_OP_RELU, 1, 1, 31);
+    NEW_VXNODE(node[17], VSI_NN_OP_RELU, 1, 1, 11);
 
     /*-----------------------------------------
-      lid       - Conv_Conv_47_25
+      lid       - Conv_Conv_38_7
       var       - node[18]
-      name      - Conv_Conv_47
+      name      - Conv_Conv_38
       operation - convolution
       input     - [320, 320, 768, 1]
       filter    - [3, 3, 768, 1]
       output    - [320, 320, 768, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[18], VSI_NN_OP_CONV2D, 3, 1, 25);
+    NEW_VXNODE(node[18], VSI_NN_OP_CONV2D, 3, 1, 7);
     node[18]->nn_param.conv2d.ksize[0] = 3;
     node[18]->nn_param.conv2d.ksize[1] = 3;
     node[18]->nn_param.conv2d.weights = 768;
@@ -534,25 +534,25 @@ vsi_nn_graph_t * vnn_CreateMnist
     node[18]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
 
     /*-----------------------------------------
-      lid       - Relu_Relu_48_19
+      lid       - Relu_Relu_39_4
       var       - node[19]
-      name      - Relu_Relu_48
+      name      - Relu_Relu_39
       operation - relu
       input     - [320, 320, 768, 1]
       output    - [320, 320, 768, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[19], VSI_NN_OP_RELU, 1, 1, 19);
+    NEW_VXNODE(node[19], VSI_NN_OP_RELU, 1, 1, 4);
 
     /*-----------------------------------------
-      lid       - Conv_Conv_49_14
+      lid       - Conv_Conv_40_2
       var       - node[20]
-      name      - Conv_Conv_49
+      name      - Conv_Conv_40
       operation - convolution
       input     - [320, 320, 768, 1]
       filter    - [1, 1, 768, 128]
       output    - [320, 320, 128, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[20], VSI_NN_OP_CONV2D, 3, 1, 14);
+    NEW_VXNODE(node[20], VSI_NN_OP_CONV2D, 3, 1, 2);
     node[20]->nn_param.conv2d.ksize[0] = 1;
     node[20]->nn_param.conv2d.ksize[1] = 1;
     node[20]->nn_param.conv2d.weights = 128;
@@ -571,369 +571,33 @@ vsi_nn_graph_t * vnn_CreateMnist
     node[20]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
 
     /*-----------------------------------------
-      lid       - Add_Add_50_10
+      lid       - Add_Add_41_1
       var       - node[21]
-      name      - Add_Add_50
+      name      - Add_Add_41
       operation - add
       input     - [320, 320, 128, 1]
                   [320, 320, 128, 1]
       output    - [320, 320, 128, 1]
     -----------------------------------------*/
-    NEW_VXNODE(node[21], VSI_NN_OP_ADD, 2, 1, 10);
-
-    /*-----------------------------------------
-      lid       - Conv_Conv_51_30
-      var       - node[22]
-      name      - Conv_Conv_51
-      operation - convolution
-      input     - [320, 320, 128, 1]
-      filter    - [1, 1, 128, 768]
-      output    - [320, 320, 768, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[22], VSI_NN_OP_CONV2D, 3, 1, 30);
-    node[22]->nn_param.conv2d.ksize[0] = 1;
-    node[22]->nn_param.conv2d.ksize[1] = 1;
-    node[22]->nn_param.conv2d.weights = 768;
-    node[22]->nn_param.conv2d.stride[0] = 1;
-    node[22]->nn_param.conv2d.stride[1] = 1;
-    node[22]->nn_param.conv2d.pad[0] = 0;
-    node[22]->nn_param.conv2d.pad[1] = 0;
-    node[22]->nn_param.conv2d.pad[2] = 0;
-    node[22]->nn_param.conv2d.pad[3] = 0;
-    node[22]->nn_param.conv2d.group = 1;
-    node[22]->nn_param.conv2d.dilation[0] = 1;
-    node[22]->nn_param.conv2d.dilation[1] = 1;
-    node[22]->nn_param.conv2d.multiplier = 0;
-    node[22]->vx_param.overflow_policy = VX_CONVERT_POLICY_SATURATE;
-    node[22]->vx_param.rounding_policy = VX_ROUND_POLICY_TO_ZERO;
-    node[22]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
-
-    /*-----------------------------------------
-      lid       - Relu_Relu_52_24
-      var       - node[23]
-      name      - Relu_Relu_52
-      operation - relu
-      input     - [320, 320, 768, 1]
-      output    - [320, 320, 768, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[23], VSI_NN_OP_RELU, 1, 1, 24);
-
-    /*-----------------------------------------
-      lid       - Conv_Conv_53_18
-      var       - node[24]
-      name      - Conv_Conv_53
-      operation - convolution
-      input     - [320, 320, 768, 1]
-      filter    - [3, 3, 768, 1]
-      output    - [320, 320, 768, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[24], VSI_NN_OP_CONV2D, 3, 1, 18);
-    node[24]->nn_param.conv2d.ksize[0] = 3;
-    node[24]->nn_param.conv2d.ksize[1] = 3;
-    node[24]->nn_param.conv2d.weights = 768;
-    node[24]->nn_param.conv2d.stride[0] = 1;
-    node[24]->nn_param.conv2d.stride[1] = 1;
-    node[24]->nn_param.conv2d.pad[0] = 1;
-    node[24]->nn_param.conv2d.pad[1] = 1;
-    node[24]->nn_param.conv2d.pad[2] = 1;
-    node[24]->nn_param.conv2d.pad[3] = 1;
-    node[24]->nn_param.conv2d.group = 768;
-    node[24]->nn_param.conv2d.dilation[0] = 1;
-    node[24]->nn_param.conv2d.dilation[1] = 1;
-    node[24]->nn_param.conv2d.multiplier = 1;
-    node[24]->vx_param.overflow_policy = VX_CONVERT_POLICY_SATURATE;
-    node[24]->vx_param.rounding_policy = VX_ROUND_POLICY_TO_ZERO;
-    node[24]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
-
-    /*-----------------------------------------
-      lid       - Relu_Relu_54_13
-      var       - node[25]
-      name      - Relu_Relu_54
-      operation - relu
-      input     - [320, 320, 768, 1]
-      output    - [320, 320, 768, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[25], VSI_NN_OP_RELU, 1, 1, 13);
-
-    /*-----------------------------------------
-      lid       - Conv_Conv_55_9
-      var       - node[26]
-      name      - Conv_Conv_55
-      operation - convolution
-      input     - [320, 320, 768, 1]
-      filter    - [1, 1, 768, 128]
-      output    - [320, 320, 128, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[26], VSI_NN_OP_CONV2D, 3, 1, 9);
-    node[26]->nn_param.conv2d.ksize[0] = 1;
-    node[26]->nn_param.conv2d.ksize[1] = 1;
-    node[26]->nn_param.conv2d.weights = 128;
-    node[26]->nn_param.conv2d.stride[0] = 1;
-    node[26]->nn_param.conv2d.stride[1] = 1;
-    node[26]->nn_param.conv2d.pad[0] = 0;
-    node[26]->nn_param.conv2d.pad[1] = 0;
-    node[26]->nn_param.conv2d.pad[2] = 0;
-    node[26]->nn_param.conv2d.pad[3] = 0;
-    node[26]->nn_param.conv2d.group = 1;
-    node[26]->nn_param.conv2d.dilation[0] = 1;
-    node[26]->nn_param.conv2d.dilation[1] = 1;
-    node[26]->nn_param.conv2d.multiplier = 0;
-    node[26]->vx_param.overflow_policy = VX_CONVERT_POLICY_SATURATE;
-    node[26]->vx_param.rounding_policy = VX_ROUND_POLICY_TO_ZERO;
-    node[26]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
-
-    /*-----------------------------------------
-      lid       - Add_Add_56_6
-      var       - node[27]
-      name      - Add_Add_56
-      operation - add
-      input     - [320, 320, 128, 1]
-                  [320, 320, 128, 1]
-      output    - [320, 320, 128, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[27], VSI_NN_OP_ADD, 2, 1, 6);
-
-    /*-----------------------------------------
-      lid       - Conv_Conv_57_23
-      var       - node[28]
-      name      - Conv_Conv_57
-      operation - convolution
-      input     - [320, 320, 128, 1]
-      filter    - [1, 1, 128, 768]
-      output    - [320, 320, 768, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[28], VSI_NN_OP_CONV2D, 3, 1, 23);
-    node[28]->nn_param.conv2d.ksize[0] = 1;
-    node[28]->nn_param.conv2d.ksize[1] = 1;
-    node[28]->nn_param.conv2d.weights = 768;
-    node[28]->nn_param.conv2d.stride[0] = 1;
-    node[28]->nn_param.conv2d.stride[1] = 1;
-    node[28]->nn_param.conv2d.pad[0] = 0;
-    node[28]->nn_param.conv2d.pad[1] = 0;
-    node[28]->nn_param.conv2d.pad[2] = 0;
-    node[28]->nn_param.conv2d.pad[3] = 0;
-    node[28]->nn_param.conv2d.group = 1;
-    node[28]->nn_param.conv2d.dilation[0] = 1;
-    node[28]->nn_param.conv2d.dilation[1] = 1;
-    node[28]->nn_param.conv2d.multiplier = 0;
-    node[28]->vx_param.overflow_policy = VX_CONVERT_POLICY_SATURATE;
-    node[28]->vx_param.rounding_policy = VX_ROUND_POLICY_TO_ZERO;
-    node[28]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
-
-    /*-----------------------------------------
-      lid       - Relu_Relu_58_17
-      var       - node[29]
-      name      - Relu_Relu_58
-      operation - relu
-      input     - [320, 320, 768, 1]
-      output    - [320, 320, 768, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[29], VSI_NN_OP_RELU, 1, 1, 17);
-
-    /*-----------------------------------------
-      lid       - Conv_Conv_59_12
-      var       - node[30]
-      name      - Conv_Conv_59
-      operation - convolution
-      input     - [320, 320, 768, 1]
-      filter    - [3, 3, 768, 1]
-      output    - [320, 320, 768, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[30], VSI_NN_OP_CONV2D, 3, 1, 12);
-    node[30]->nn_param.conv2d.ksize[0] = 3;
-    node[30]->nn_param.conv2d.ksize[1] = 3;
-    node[30]->nn_param.conv2d.weights = 768;
-    node[30]->nn_param.conv2d.stride[0] = 1;
-    node[30]->nn_param.conv2d.stride[1] = 1;
-    node[30]->nn_param.conv2d.pad[0] = 1;
-    node[30]->nn_param.conv2d.pad[1] = 1;
-    node[30]->nn_param.conv2d.pad[2] = 1;
-    node[30]->nn_param.conv2d.pad[3] = 1;
-    node[30]->nn_param.conv2d.group = 768;
-    node[30]->nn_param.conv2d.dilation[0] = 1;
-    node[30]->nn_param.conv2d.dilation[1] = 1;
-    node[30]->nn_param.conv2d.multiplier = 1;
-    node[30]->vx_param.overflow_policy = VX_CONVERT_POLICY_SATURATE;
-    node[30]->vx_param.rounding_policy = VX_ROUND_POLICY_TO_ZERO;
-    node[30]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
-
-    /*-----------------------------------------
-      lid       - Relu_Relu_60_8
-      var       - node[31]
-      name      - Relu_Relu_60
-      operation - relu
-      input     - [320, 320, 768, 1]
-      output    - [320, 320, 768, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[31], VSI_NN_OP_RELU, 1, 1, 8);
-
-    /*-----------------------------------------
-      lid       - Conv_Conv_61_5
-      var       - node[32]
-      name      - Conv_Conv_61
-      operation - convolution
-      input     - [320, 320, 768, 1]
-      filter    - [1, 1, 768, 128]
-      output    - [320, 320, 128, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[32], VSI_NN_OP_CONV2D, 3, 1, 5);
-    node[32]->nn_param.conv2d.ksize[0] = 1;
-    node[32]->nn_param.conv2d.ksize[1] = 1;
-    node[32]->nn_param.conv2d.weights = 128;
-    node[32]->nn_param.conv2d.stride[0] = 1;
-    node[32]->nn_param.conv2d.stride[1] = 1;
-    node[32]->nn_param.conv2d.pad[0] = 0;
-    node[32]->nn_param.conv2d.pad[1] = 0;
-    node[32]->nn_param.conv2d.pad[2] = 0;
-    node[32]->nn_param.conv2d.pad[3] = 0;
-    node[32]->nn_param.conv2d.group = 1;
-    node[32]->nn_param.conv2d.dilation[0] = 1;
-    node[32]->nn_param.conv2d.dilation[1] = 1;
-    node[32]->nn_param.conv2d.multiplier = 0;
-    node[32]->vx_param.overflow_policy = VX_CONVERT_POLICY_SATURATE;
-    node[32]->vx_param.rounding_policy = VX_ROUND_POLICY_TO_ZERO;
-    node[32]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
-
-    /*-----------------------------------------
-      lid       - Add_Add_62_3
-      var       - node[33]
-      name      - Add_Add_62
-      operation - add
-      input     - [320, 320, 128, 1]
-                  [320, 320, 128, 1]
-      output    - [320, 320, 128, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[33], VSI_NN_OP_ADD, 2, 1, 3);
-
-    /*-----------------------------------------
-      lid       - Conv_Conv_63_16
-      var       - node[34]
-      name      - Conv_Conv_63
-      operation - convolution
-      input     - [320, 320, 128, 1]
-      filter    - [1, 1, 128, 768]
-      output    - [320, 320, 768, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[34], VSI_NN_OP_CONV2D, 3, 1, 16);
-    node[34]->nn_param.conv2d.ksize[0] = 1;
-    node[34]->nn_param.conv2d.ksize[1] = 1;
-    node[34]->nn_param.conv2d.weights = 768;
-    node[34]->nn_param.conv2d.stride[0] = 1;
-    node[34]->nn_param.conv2d.stride[1] = 1;
-    node[34]->nn_param.conv2d.pad[0] = 0;
-    node[34]->nn_param.conv2d.pad[1] = 0;
-    node[34]->nn_param.conv2d.pad[2] = 0;
-    node[34]->nn_param.conv2d.pad[3] = 0;
-    node[34]->nn_param.conv2d.group = 1;
-    node[34]->nn_param.conv2d.dilation[0] = 1;
-    node[34]->nn_param.conv2d.dilation[1] = 1;
-    node[34]->nn_param.conv2d.multiplier = 0;
-    node[34]->vx_param.overflow_policy = VX_CONVERT_POLICY_SATURATE;
-    node[34]->vx_param.rounding_policy = VX_ROUND_POLICY_TO_ZERO;
-    node[34]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
-
-    /*-----------------------------------------
-      lid       - Relu_Relu_64_11
-      var       - node[35]
-      name      - Relu_Relu_64
-      operation - relu
-      input     - [320, 320, 768, 1]
-      output    - [320, 320, 768, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[35], VSI_NN_OP_RELU, 1, 1, 11);
-
-    /*-----------------------------------------
-      lid       - Conv_Conv_65_7
-      var       - node[36]
-      name      - Conv_Conv_65
-      operation - convolution
-      input     - [320, 320, 768, 1]
-      filter    - [3, 3, 768, 1]
-      output    - [320, 320, 768, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[36], VSI_NN_OP_CONV2D, 3, 1, 7);
-    node[36]->nn_param.conv2d.ksize[0] = 3;
-    node[36]->nn_param.conv2d.ksize[1] = 3;
-    node[36]->nn_param.conv2d.weights = 768;
-    node[36]->nn_param.conv2d.stride[0] = 1;
-    node[36]->nn_param.conv2d.stride[1] = 1;
-    node[36]->nn_param.conv2d.pad[0] = 1;
-    node[36]->nn_param.conv2d.pad[1] = 1;
-    node[36]->nn_param.conv2d.pad[2] = 1;
-    node[36]->nn_param.conv2d.pad[3] = 1;
-    node[36]->nn_param.conv2d.group = 768;
-    node[36]->nn_param.conv2d.dilation[0] = 1;
-    node[36]->nn_param.conv2d.dilation[1] = 1;
-    node[36]->nn_param.conv2d.multiplier = 1;
-    node[36]->vx_param.overflow_policy = VX_CONVERT_POLICY_SATURATE;
-    node[36]->vx_param.rounding_policy = VX_ROUND_POLICY_TO_ZERO;
-    node[36]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
-
-    /*-----------------------------------------
-      lid       - Relu_Relu_66_4
-      var       - node[37]
-      name      - Relu_Relu_66
-      operation - relu
-      input     - [320, 320, 768, 1]
-      output    - [320, 320, 768, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[37], VSI_NN_OP_RELU, 1, 1, 4);
-
-    /*-----------------------------------------
-      lid       - Conv_Conv_67_2
-      var       - node[38]
-      name      - Conv_Conv_67
-      operation - convolution
-      input     - [320, 320, 768, 1]
-      filter    - [1, 1, 768, 128]
-      output    - [320, 320, 128, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[38], VSI_NN_OP_CONV2D, 3, 1, 2);
-    node[38]->nn_param.conv2d.ksize[0] = 1;
-    node[38]->nn_param.conv2d.ksize[1] = 1;
-    node[38]->nn_param.conv2d.weights = 128;
-    node[38]->nn_param.conv2d.stride[0] = 1;
-    node[38]->nn_param.conv2d.stride[1] = 1;
-    node[38]->nn_param.conv2d.pad[0] = 0;
-    node[38]->nn_param.conv2d.pad[1] = 0;
-    node[38]->nn_param.conv2d.pad[2] = 0;
-    node[38]->nn_param.conv2d.pad[3] = 0;
-    node[38]->nn_param.conv2d.group = 1;
-    node[38]->nn_param.conv2d.dilation[0] = 1;
-    node[38]->nn_param.conv2d.dilation[1] = 1;
-    node[38]->nn_param.conv2d.multiplier = 0;
-    node[38]->vx_param.overflow_policy = VX_CONVERT_POLICY_SATURATE;
-    node[38]->vx_param.rounding_policy = VX_ROUND_POLICY_TO_ZERO;
-    node[38]->vx_param.down_scale_size_rounding = VX_CONVOLUTIONAL_NETWORK_DS_SIZE_ROUNDING_FLOOR;
-
-    /*-----------------------------------------
-      lid       - Add_Add_68_1
-      var       - node[39]
-      name      - Add_Add_68
-      operation - add
-      input     - [320, 320, 128, 1]
-                  [320, 320, 128, 1]
-      output    - [320, 320, 128, 1]
-    -----------------------------------------*/
-    NEW_VXNODE(node[39], VSI_NN_OP_ADD, 2, 1, 1);
+    NEW_VXNODE(node[21], VSI_NN_OP_ADD, 2, 1, 1);
 
 
 /*-----------------------------------------
   Tensor initialize
  -----------------------------------------*/
     attr.dtype.fmt = VSI_NN_DIM_FMT_NCHW;
-    /* @attach_Add_Add_68/out0_0:out0 */
+    /* @attach_Add_Add_41/out0_0:out0 */
     attr.size[0] = 320;
     attr.size[1] = 320;
     attr.size[2] = 128;
     attr.size[3] = 1;
     attr.dim_num = 4;
-    attr.dtype.scale = 0.005075792782008648;
-    attr.dtype.zero_point = 127;
+    attr.dtype.scale = 0.004727776627987623;
+    attr.dtype.zero_point = 126;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_NORM_TENSOR(norm_tensor[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @input_40:out0 */
+    /* @input_22:out0 */
     attr.size[0] = 12800;
     attr.size[1] = 1024;
     attr.size[2] = 3;
@@ -946,7 +610,7 @@ vsi_nn_graph_t * vnn_CreateMnist
 
 
 
-    /* @Constant_Cast_19_onnx__Gather_230_as_const_29:data */
+    /* @Constant_Cast_10_onnx__Gather_122_as_const_19:data */
     attr.size[0] = 1;
     attr.dim_num = 1;
     attr.dtype.scale = 1.0;
@@ -954,178 +618,7 @@ vsi_nn_graph_t * vnn_CreateMnist
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_CONST_TENSOR(const_tensor[0], attr, VSI_NN_TYPE_UINT8, 0, 1);
 
-    /* @Conv_Conv_33_38:weight */
-    attr.size[0] = 1;
-    attr.size[1] = 1;
-    attr.size[2] = 128;
-    attr.size[3] = 768;
-    attr.dim_num = 4;
-    attr.dtype.scale = 0.0017575868405401707;
-    attr.dtype.zero_point = 131;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[1], attr, VSI_NN_TYPE_UINT8, 3073, 98304);
-
-    /* @Conv_Conv_33_38:bias */
-    attr.size[0] = 768;
-    attr.dim_num = 1;
-    attr.dtype.scale = 6.865468426300674e-06;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[2], attr, VSI_NN_TYPE_INT32, 1, 3072);
-
-    /* @Conv_Conv_35_34:weight */
-    attr.size[0] = 3;
-    attr.size[1] = 3;
-    attr.size[2] = 768;
-    attr.size[3] = 1;
-    attr.dim_num = 4;
-    attr.dtype.scale = 0.0005114180967211723;
-    attr.dtype.zero_point = 136;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[3], attr, VSI_NN_TYPE_UINT8, 101377, 6912);
-
-    /* @Conv_Conv_35_34:bias */
-    attr.size[0] = 768;
-    attr.dim_num = 1;
-    attr.dtype.scale = 1.973319668138046e-06;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[4], attr, VSI_NN_TYPE_INT32, 1, 3072);
-
-    /* @Conv_Conv_37_27:weight */
-    attr.size[0] = 1;
-    attr.size[1] = 1;
-    attr.size[2] = 768;
-    attr.size[3] = 128;
-    attr.dim_num = 4;
-    attr.dtype.scale = 0.004496679175645113;
-    attr.dtype.zero_point = 114;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[5], attr, VSI_NN_TYPE_UINT8, 108801, 98304);
-
-    /* @Conv_Conv_37_27:bias */
-    attr.size[0] = 128;
-    attr.dim_num = 1;
-    attr.dtype.scale = 1.0228434251499435e-06;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[6], attr, VSI_NN_TYPE_INT32, 108289, 512);
-
-    /* @Conv_Conv_39_39:weight */
-    attr.size[0] = 1;
-    attr.size[1] = 1;
-    attr.size[2] = 128;
-    attr.size[3] = 768;
-    attr.dim_num = 4;
-    attr.dtype.scale = 0.001795549294911325;
-    attr.dtype.zero_point = 120;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[7], attr, VSI_NN_TYPE_UINT8, 207105, 98304);
-
-    /* @Conv_Conv_39_39:bias */
-    attr.size[0] = 768;
-    attr.dim_num = 1;
-    attr.dtype.scale = 7.934874105295384e-06;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[8], attr, VSI_NN_TYPE_INT32, 1, 3072);
-
-    /* @Conv_Conv_41_32:weight */
-    attr.size[0] = 3;
-    attr.size[1] = 3;
-    attr.size[2] = 768;
-    attr.size[3] = 1;
-    attr.dim_num = 4;
-    attr.dtype.scale = 0.0005211516981944442;
-    attr.dtype.zero_point = 126;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[9], attr, VSI_NN_TYPE_UINT8, 305409, 6912);
-
-    /* @Conv_Conv_41_32:bias */
-    attr.size[0] = 768;
-    attr.dim_num = 1;
-    attr.dtype.scale = 1.9930789733646514e-06;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[10], attr, VSI_NN_TYPE_INT32, 1, 3072);
-
-    /* @Conv_Conv_43_20:weight */
-    attr.size[0] = 1;
-    attr.size[1] = 1;
-    attr.size[2] = 768;
-    attr.size[3] = 128;
-    attr.dim_num = 4;
-    attr.dtype.scale = 0.004145192913711071;
-    attr.dtype.zero_point = 126;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[11], attr, VSI_NN_TYPE_UINT8, 312321, 98304);
-
-    /* @Conv_Conv_43_20:bias */
-    attr.size[0] = 128;
-    attr.dim_num = 1;
-    attr.dtype.scale = 9.32270093329535e-07;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[12], attr, VSI_NN_TYPE_INT32, 108289, 512);
-
-    /* @Conv_Conv_45_36:weight */
-    attr.size[0] = 1;
-    attr.size[1] = 1;
-    attr.size[2] = 128;
-    attr.size[3] = 768;
-    attr.dim_num = 4;
-    attr.dtype.scale = 0.0018123475601896644;
-    attr.dtype.zero_point = 138;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[13], attr, VSI_NN_TYPE_UINT8, 410625, 98304);
-
-    /* @Conv_Conv_45_36:bias */
-    attr.size[0] = 768;
-    attr.dim_num = 1;
-    attr.dtype.scale = 8.355726850380431e-06;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[14], attr, VSI_NN_TYPE_INT32, 1, 3072);
-
-    /* @Conv_Conv_47_25:weight */
-    attr.size[0] = 3;
-    attr.size[1] = 3;
-    attr.size[2] = 768;
-    attr.size[3] = 1;
-    attr.dim_num = 4;
-    attr.dtype.scale = 0.0004924380918964744;
-    attr.dtype.zero_point = 126;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[15], attr, VSI_NN_TYPE_UINT8, 508929, 6912);
-
-    /* @Conv_Conv_47_25:bias */
-    attr.size[0] = 768;
-    attr.dim_num = 1;
-    attr.dtype.scale = 1.7675848486318297e-06;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[16], attr, VSI_NN_TYPE_INT32, 1, 3072);
-
-    /* @Conv_Conv_49_14:weight */
-    attr.size[0] = 1;
-    attr.size[1] = 1;
-    attr.size[2] = 768;
-    attr.size[3] = 128;
-    attr.dim_num = 4;
-    attr.dtype.scale = 0.004183396231383085;
-    attr.dtype.zero_point = 131;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[17], attr, VSI_NN_TYPE_UINT8, 515841, 98304);
-
-    /* @Conv_Conv_49_14:bias */
-    attr.size[0] = 128;
-    attr.dim_num = 1;
-    attr.dtype.scale = 1.0414009887290977e-06;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[18], attr, VSI_NN_TYPE_INT32, 108289, 512);
-
-    /* @Conv_Conv_51_30:weight */
+    /* @Conv_Conv_24_20:weight */
     attr.size[0] = 1;
     attr.size[1] = 1;
     attr.size[2] = 128;
@@ -1134,17 +627,17 @@ vsi_nn_graph_t * vnn_CreateMnist
     attr.dtype.scale = 0.0016790616791695356;
     attr.dtype.zero_point = 126;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[19], attr, VSI_NN_TYPE_UINT8, 614145, 98304);
+    NEW_CONST_TENSOR(const_tensor[1], attr, VSI_NN_TYPE_UINT8, 3073, 98304);
 
-    /* @Conv_Conv_51_30:bias */
+    /* @Conv_Conv_24_20:bias */
     attr.size[0] = 768;
     attr.dim_num = 1;
-    attr.dtype.scale = 8.000763629960241e-06;
+    attr.dtype.scale = 6.558734213444044e-06;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[20], attr, VSI_NN_TYPE_INT32, 1, 3072);
+    NEW_CONST_TENSOR(const_tensor[2], attr, VSI_NN_TYPE_INT32, 1, 3072);
 
-    /* @Conv_Conv_53_18:weight */
+    /* @Conv_Conv_26_17:weight */
     attr.size[0] = 3;
     attr.size[1] = 3;
     attr.size[2] = 768;
@@ -1153,17 +646,17 @@ vsi_nn_graph_t * vnn_CreateMnist
     attr.dtype.scale = 0.0005429667653515935;
     attr.dtype.zero_point = 142;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[21], attr, VSI_NN_TYPE_UINT8, 712449, 6912);
+    NEW_CONST_TENSOR(const_tensor[3], attr, VSI_NN_TYPE_UINT8, 101377, 6912);
 
-    /* @Conv_Conv_53_18:bias */
+    /* @Conv_Conv_26_17:bias */
     attr.size[0] = 768;
     attr.dim_num = 1;
-    attr.dtype.scale = 2.1618340231234945e-06;
+    attr.dtype.scale = 1.9848983273166275e-06;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[22], attr, VSI_NN_TYPE_INT32, 1, 3072);
+    NEW_CONST_TENSOR(const_tensor[4], attr, VSI_NN_TYPE_INT32, 1, 3072);
 
-    /* @Conv_Conv_55_9:weight */
+    /* @Conv_Conv_28_9:weight */
     attr.size[0] = 1;
     attr.size[1] = 1;
     attr.size[2] = 768;
@@ -1172,17 +665,17 @@ vsi_nn_graph_t * vnn_CreateMnist
     attr.dtype.scale = 0.004433945287019014;
     attr.dtype.zero_point = 141;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[23], attr, VSI_NN_TYPE_UINT8, 719361, 98304);
+    NEW_CONST_TENSOR(const_tensor[5], attr, VSI_NN_TYPE_UINT8, 108801, 98304);
 
-    /* @Conv_Conv_55_9:bias */
+    /* @Conv_Conv_28_9:bias */
     attr.size[0] = 128;
     attr.dim_num = 1;
-    attr.dtype.scale = 1.0101727609141344e-06;
+    attr.dtype.scale = 9.400613705111589e-07;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[24], attr, VSI_NN_TYPE_INT32, 108289, 512);
+    NEW_CONST_TENSOR(const_tensor[6], attr, VSI_NN_TYPE_INT32, 108289, 512);
 
-    /* @Conv_Conv_57_23:weight */
+    /* @Conv_Conv_30_21:weight */
     attr.size[0] = 1;
     attr.size[1] = 1;
     attr.size[2] = 128;
@@ -1191,17 +684,17 @@ vsi_nn_graph_t * vnn_CreateMnist
     attr.dtype.scale = 0.001745095825754106;
     attr.dtype.zero_point = 130;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[25], attr, VSI_NN_TYPE_UINT8, 817665, 98304);
+    NEW_CONST_TENSOR(const_tensor[7], attr, VSI_NN_TYPE_UINT8, 207105, 98304);
 
-    /* @Conv_Conv_57_23:bias */
+    /* @Conv_Conv_30_21:bias */
     attr.size[0] = 768;
     attr.dim_num = 1;
-    attr.dtype.scale = 8.439181899006442e-06;
+    attr.dtype.scale = 7.75256211562529e-06;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[26], attr, VSI_NN_TYPE_INT32, 1, 3072);
+    NEW_CONST_TENSOR(const_tensor[8], attr, VSI_NN_TYPE_INT32, 1, 3072);
 
-    /* @Conv_Conv_59_12:weight */
+    /* @Conv_Conv_32_12:weight */
     attr.size[0] = 3;
     attr.size[1] = 3;
     attr.size[2] = 768;
@@ -1210,17 +703,17 @@ vsi_nn_graph_t * vnn_CreateMnist
     attr.dtype.scale = 0.0005272075068205595;
     attr.dtype.zero_point = 133;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[27], attr, VSI_NN_TYPE_UINT8, 915969, 6912);
+    NEW_CONST_TENSOR(const_tensor[9], attr, VSI_NN_TYPE_UINT8, 305409, 6912);
 
-    /* @Conv_Conv_59_12:bias */
+    /* @Conv_Conv_32_12:bias */
     attr.size[0] = 768;
     attr.dim_num = 1;
-    attr.dtype.scale = 2.0107767632500102e-06;
+    attr.dtype.scale = 1.981923010655395e-06;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[28], attr, VSI_NN_TYPE_INT32, 1, 3072);
+    NEW_CONST_TENSOR(const_tensor[10], attr, VSI_NN_TYPE_INT32, 1, 3072);
 
-    /* @Conv_Conv_61_5:weight */
+    /* @Conv_Conv_34_5:weight */
     attr.size[0] = 1;
     attr.size[1] = 1;
     attr.size[2] = 768;
@@ -1229,17 +722,17 @@ vsi_nn_graph_t * vnn_CreateMnist
     attr.dtype.scale = 0.00431971438229084;
     attr.dtype.zero_point = 124;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[29], attr, VSI_NN_TYPE_UINT8, 922881, 98304);
+    NEW_CONST_TENSOR(const_tensor[11], attr, VSI_NN_TYPE_UINT8, 312321, 98304);
 
-    /* @Conv_Conv_61_5:bias */
+    /* @Conv_Conv_34_5:bias */
     attr.size[0] = 128;
     attr.dim_num = 1;
-    attr.dtype.scale = 1.1002289446530845e-06;
+    attr.dtype.scale = 1.0922712309380548e-06;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[30], attr, VSI_NN_TYPE_INT32, 108289, 512);
+    NEW_CONST_TENSOR(const_tensor[12], attr, VSI_NN_TYPE_INT32, 108289, 512);
 
-    /* @Conv_Conv_63_16:weight */
+    /* @Conv_Conv_36_15:weight */
     attr.size[0] = 1;
     attr.size[1] = 1;
     attr.size[2] = 128;
@@ -1248,17 +741,17 @@ vsi_nn_graph_t * vnn_CreateMnist
     attr.dtype.scale = 0.0017753362189978361;
     attr.dtype.zero_point = 119;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[31], attr, VSI_NN_TYPE_UINT8, 1021185, 98304);
+    NEW_CONST_TENSOR(const_tensor[13], attr, VSI_NN_TYPE_UINT8, 410625, 98304);
 
-    /* @Conv_Conv_63_16:bias */
+    /* @Conv_Conv_36_15:bias */
     attr.size[0] = 768;
     attr.dim_num = 1;
-    attr.dtype.scale = 8.743210971371524e-06;
+    attr.dtype.scale = 8.14422491747166e-06;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[32], attr, VSI_NN_TYPE_INT32, 1, 3072);
+    NEW_CONST_TENSOR(const_tensor[14], attr, VSI_NN_TYPE_INT32, 1, 3072);
 
-    /* @Conv_Conv_65_7:weight */
+    /* @Conv_Conv_38_7:weight */
     attr.size[0] = 3;
     attr.size[1] = 3;
     attr.size[2] = 768;
@@ -1267,17 +760,17 @@ vsi_nn_graph_t * vnn_CreateMnist
     attr.dtype.scale = 0.0004951379960402846;
     attr.dtype.zero_point = 136;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[33], attr, VSI_NN_TYPE_UINT8, 1119489, 6912);
+    NEW_CONST_TENSOR(const_tensor[15], attr, VSI_NN_TYPE_UINT8, 508929, 6912);
 
-    /* @Conv_Conv_65_7:bias */
+    /* @Conv_Conv_38_7:bias */
     attr.size[0] = 768;
     attr.dim_num = 1;
-    attr.dtype.scale = 1.973278854941582e-06;
+    attr.dtype.scale = 1.921202968143185e-06;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[34], attr, VSI_NN_TYPE_INT32, 1, 3072);
+    NEW_CONST_TENSOR(const_tensor[16], attr, VSI_NN_TYPE_INT32, 1, 3072);
 
-    /* @Conv_Conv_67_2:weight */
+    /* @Conv_Conv_40_2:weight */
     attr.size[0] = 1;
     attr.size[1] = 1;
     attr.size[2] = 768;
@@ -1286,249 +779,141 @@ vsi_nn_graph_t * vnn_CreateMnist
     attr.dtype.scale = 0.004323011264204979;
     attr.dtype.zero_point = 116;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[35], attr, VSI_NN_TYPE_UINT8, 1126401, 98304);
+    NEW_CONST_TENSOR(const_tensor[17], attr, VSI_NN_TYPE_UINT8, 515841, 98304);
 
-    /* @Conv_Conv_67_2:bias */
+    /* @Conv_Conv_40_2:bias */
     attr.size[0] = 128;
     attr.dim_num = 1;
-    attr.dtype.scale = 8.693548745512076e-07;
+    attr.dtype.scale = 8.837504481153775e-07;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_CONST_TENSOR(const_tensor[36], attr, VSI_NN_TYPE_INT32, 108289, 512);
+    NEW_CONST_TENSOR(const_tensor[18], attr, VSI_NN_TYPE_INT32, 108289, 512);
 
 
 
-    /* @Constant_Cast_19_onnx__Gather_230_as_const_29:out0 */
+    /* @Constant_Cast_10_onnx__Gather_122_as_const_19:out0 */
     attr.dtype.scale = 1.0;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[0]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Constant_Cast_19_onnx__Gather_230_as_const_29_dtype_convert_Gather_Gather_20_28:out0 */
+    /* @Constant_Cast_10_onnx__Gather_122_as_const_19_dtype_convert_Gather_Gather_11_14:out0 */
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_NONE;
     NEW_VIRTUAL_TENSOR(node[1]->output.tensors[0], attr, VSI_NN_TYPE_INT32);
 
-    /* @Gather_Gather_20_28:out0 */
+    /* @Gather_Gather_11_14:out0 */
     attr.dtype.scale = 0.003906190162524581;
     attr.dtype.zero_point = 128;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[2]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Reshape_Reshape_32_22:out0 */
+    /* @Reshape_Reshape_23_10:out0 */
     attr.dtype.scale = 0.003906190162524581;
     attr.dtype.zero_point = 128;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[3]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Conv_Conv_33_38:out0 */
-    attr.dtype.scale = 0.0038585253059864044;
+    /* @Conv_Conv_24_20:out0 */
+    attr.dtype.scale = 0.0036556534469127655;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[4]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Relu_Relu_34_35:out0 */
-    attr.dtype.scale = 0.0038585253059864044;
+    /* @Relu_Relu_25_18:out0 */
+    attr.dtype.scale = 0.0036556534469127655;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[5]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Conv_Conv_35_34:out0 */
-    attr.dtype.scale = 0.0002274664002470672;
+    /* @Conv_Conv_26_17:out0 */
+    attr.dtype.scale = 0.00021201465278863907;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[6]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Relu_Relu_36_33:out0 */
-    attr.dtype.scale = 0.0002274664002470672;
+    /* @Relu_Relu_27_13:out0 */
+    attr.dtype.scale = 0.00021201465278863907;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[7]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Conv_Conv_37_27:out0 */
-    attr.dtype.scale = 0.0006238094065338373;
-    attr.dtype.zero_point = 128;
+    /* @Conv_Conv_28_9:out0 */
+    attr.dtype.scale = 0.0006292708567343652;
+    attr.dtype.zero_point = 129;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[8]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Add_Add_38_21:out0 */
-    attr.dtype.scale = 0.004419190343469381;
-    attr.dtype.zero_point = 127;
+    /* @Add_Add_29_6:out0 */
+    attr.dtype.scale = 0.004442485049366951;
+    attr.dtype.zero_point = 128;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[9]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Conv_Conv_39_39:out0 */
-    attr.dtype.scale = 0.0038243739400058985;
+    /* @Conv_Conv_30_21:out0 */
+    attr.dtype.scale = 0.0037592845037579536;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[10]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Relu_Relu_40_37:out0 */
-    attr.dtype.scale = 0.0038243739400058985;
+    /* @Relu_Relu_31_16:out0 */
+    attr.dtype.scale = 0.0037592845037579536;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[11]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Conv_Conv_41_32:out0 */
-    attr.dtype.scale = 0.0002249039098387584;
+    /* @Conv_Conv_32_12:out0 */
+    attr.dtype.scale = 0.00025285728042945266;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[12]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Relu_Relu_42_26:out0 */
-    attr.dtype.scale = 0.0002249039098387584;
+    /* @Relu_Relu_33_8:out0 */
+    attr.dtype.scale = 0.00025285728042945266;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[13]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Conv_Conv_43_20:out0 */
-    attr.dtype.scale = 0.0006035820115357637;
-    attr.dtype.zero_point = 125;
+    /* @Conv_Conv_34_5:out0 */
+    attr.dtype.scale = 0.0006311304168775678;
+    attr.dtype.zero_point = 129;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[14]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Add_Add_44_15:out0 */
-    attr.dtype.scale = 0.004610443953424692;
-    attr.dtype.zero_point = 126;
+    /* @Add_Add_35_3:out0 */
+    attr.dtype.scale = 0.004587426781654358;
+    attr.dtype.zero_point = 128;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[15]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Conv_Conv_45_36:out0 */
-    attr.dtype.scale = 0.003589455969631672;
+    /* @Conv_Conv_36_15:out0 */
+    attr.dtype.scale = 0.003880136413499713;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[16]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Relu_Relu_46_31:out0 */
-    attr.dtype.scale = 0.003589455969631672;
+    /* @Relu_Relu_37_11:out0 */
+    attr.dtype.scale = 0.003880136413499713;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[17]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Conv_Conv_47_25:out0 */
-    attr.dtype.scale = 0.0002489367325324565;
+    /* @Conv_Conv_38_7:out0 */
+    attr.dtype.scale = 0.00020442936511244625;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[18]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Relu_Relu_48_19:out0 */
-    attr.dtype.scale = 0.0002489367325324565;
+    /* @Relu_Relu_39_4:out0 */
+    attr.dtype.scale = 0.00020442936511244625;
     attr.dtype.zero_point = 0;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[19]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @Conv_Conv_49_14:out0 */
-    attr.dtype.scale = 0.0006276312633417547;
-    attr.dtype.zero_point = 117;
+    /* @Conv_Conv_40_2:out0 */
+    attr.dtype.scale = 0.0006249690777622163;
+    attr.dtype.zero_point = 123;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_VIRTUAL_TENSOR(node[20]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Add_Add_50_10:out0 */
-    attr.dtype.scale = 0.0047650206834077835;
-    attr.dtype.zero_point = 127;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[21]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Conv_Conv_51_30:out0 */
-    attr.dtype.scale = 0.0039815218187868595;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[22]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Relu_Relu_52_24:out0 */
-    attr.dtype.scale = 0.0039815218187868595;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[23]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Conv_Conv_53_18:out0 */
-    attr.dtype.scale = 0.00022782706946600229;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[24]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Relu_Relu_54_13:out0 */
-    attr.dtype.scale = 0.00022782706946600229;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[25]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Conv_Conv_55_9:out0 */
-    attr.dtype.scale = 0.000619690224993974;
-    attr.dtype.zero_point = 126;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[26]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Add_Add_56_6:out0 */
-    attr.dtype.scale = 0.004835941828787327;
-    attr.dtype.zero_point = 125;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[27]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Conv_Conv_57_23:out0 */
-    attr.dtype.scale = 0.003814013907685876;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[28]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Relu_Relu_58_17:out0 */
-    attr.dtype.scale = 0.003814013907685876;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[29]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Conv_Conv_59_12:out0 */
-    attr.dtype.scale = 0.00025469946558587253;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[30]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Relu_Relu_60_8:out0 */
-    attr.dtype.scale = 0.00025469946558587253;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[31]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Conv_Conv_61_5:out0 */
-    attr.dtype.scale = 0.0006155816954560578;
-    attr.dtype.zero_point = 121;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[32]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Add_Add_62_3:out0 */
-    attr.dtype.scale = 0.004924819804728031;
-    attr.dtype.zero_point = 127;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[33]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Conv_Conv_63_16:out0 */
-    attr.dtype.scale = 0.003985310904681683;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[34]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Relu_Relu_64_11:out0 */
-    attr.dtype.scale = 0.003985310904681683;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[35]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Conv_Conv_65_7:out0 */
-    attr.dtype.scale = 0.00020109937759116292;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[36]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Relu_Relu_66_4:out0 */
-    attr.dtype.scale = 0.00020109937759116292;
-    attr.dtype.zero_point = 0;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[37]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
-
-    /* @Conv_Conv_67_2:out0 */
-    attr.dtype.scale = 0.0006094555137678981;
-    attr.dtype.zero_point = 127;
-    attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
-    NEW_VIRTUAL_TENSOR(node[38]->output.tensors[0], attr, VSI_NN_TYPE_UINT8);
 
 
 
@@ -1536,169 +921,94 @@ vsi_nn_graph_t * vnn_CreateMnist
   Connection initialize
  -----------------------------------------*/
     node[2]->input.tensors[0] = norm_tensor[1];
-    node[39]->output.tensors[0] = norm_tensor[0];
+    node[21]->output.tensors[0] = norm_tensor[0];
 
-    /* Constant_Cast_19_onnx__Gather_230_as_const_29 */
+    /* Constant_Cast_10_onnx__Gather_122_as_const_19 */
     node[0]->input.tensors[0] = const_tensor[0]; /* data_data */
 
-    /* Constant_Cast_19_onnx__Gather_230_as_const_29_dtype_convert_Gather_Gather_20_28 */
+    /* Constant_Cast_10_onnx__Gather_122_as_const_19_dtype_convert_Gather_Gather_11_14 */
     node[1]->input.tensors[0] = node[0]->output.tensors[0];
 
-    /* Gather_Gather_20_28 */
+    /* Gather_Gather_11_14 */
     node[2]->input.tensors[1] = node[1]->output.tensors[0];
 
-    /* Reshape_Reshape_32_22 */
+    /* Reshape_Reshape_23_10 */
     node[3]->input.tensors[0] = node[2]->output.tensors[0];
 
-    /* Conv_Conv_33_38 */
+    /* Conv_Conv_24_20 */
     node[4]->input.tensors[0] = node[3]->output.tensors[0];
     node[4]->input.tensors[1] = const_tensor[1]; /* data_weight */
     node[4]->input.tensors[2] = const_tensor[2]; /* data_bias */
 
-    /* Relu_Relu_34_35 */
+    /* Relu_Relu_25_18 */
     node[5]->input.tensors[0] = node[4]->output.tensors[0];
 
-    /* Conv_Conv_35_34 */
+    /* Conv_Conv_26_17 */
     node[6]->input.tensors[0] = node[5]->output.tensors[0];
     node[6]->input.tensors[1] = const_tensor[3]; /* data_weight */
     node[6]->input.tensors[2] = const_tensor[4]; /* data_bias */
 
-    /* Relu_Relu_36_33 */
+    /* Relu_Relu_27_13 */
     node[7]->input.tensors[0] = node[6]->output.tensors[0];
 
-    /* Conv_Conv_37_27 */
+    /* Conv_Conv_28_9 */
     node[8]->input.tensors[0] = node[7]->output.tensors[0];
     node[8]->input.tensors[1] = const_tensor[5]; /* data_weight */
     node[8]->input.tensors[2] = const_tensor[6]; /* data_bias */
 
-    /* Add_Add_38_21 */
+    /* Add_Add_29_6 */
     node[9]->input.tensors[0] = node[8]->output.tensors[0];
     node[9]->input.tensors[1] = node[3]->output.tensors[0];
 
-    /* Conv_Conv_39_39 */
+    /* Conv_Conv_30_21 */
     node[10]->input.tensors[0] = node[9]->output.tensors[0];
     node[10]->input.tensors[1] = const_tensor[7]; /* data_weight */
     node[10]->input.tensors[2] = const_tensor[8]; /* data_bias */
 
-    /* Relu_Relu_40_37 */
+    /* Relu_Relu_31_16 */
     node[11]->input.tensors[0] = node[10]->output.tensors[0];
 
-    /* Conv_Conv_41_32 */
+    /* Conv_Conv_32_12 */
     node[12]->input.tensors[0] = node[11]->output.tensors[0];
     node[12]->input.tensors[1] = const_tensor[9]; /* data_weight */
     node[12]->input.tensors[2] = const_tensor[10]; /* data_bias */
 
-    /* Relu_Relu_42_26 */
+    /* Relu_Relu_33_8 */
     node[13]->input.tensors[0] = node[12]->output.tensors[0];
 
-    /* Conv_Conv_43_20 */
+    /* Conv_Conv_34_5 */
     node[14]->input.tensors[0] = node[13]->output.tensors[0];
     node[14]->input.tensors[1] = const_tensor[11]; /* data_weight */
     node[14]->input.tensors[2] = const_tensor[12]; /* data_bias */
 
-    /* Add_Add_44_15 */
+    /* Add_Add_35_3 */
     node[15]->input.tensors[0] = node[14]->output.tensors[0];
     node[15]->input.tensors[1] = node[9]->output.tensors[0];
 
-    /* Conv_Conv_45_36 */
+    /* Conv_Conv_36_15 */
     node[16]->input.tensors[0] = node[15]->output.tensors[0];
     node[16]->input.tensors[1] = const_tensor[13]; /* data_weight */
     node[16]->input.tensors[2] = const_tensor[14]; /* data_bias */
 
-    /* Relu_Relu_46_31 */
+    /* Relu_Relu_37_11 */
     node[17]->input.tensors[0] = node[16]->output.tensors[0];
 
-    /* Conv_Conv_47_25 */
+    /* Conv_Conv_38_7 */
     node[18]->input.tensors[0] = node[17]->output.tensors[0];
     node[18]->input.tensors[1] = const_tensor[15]; /* data_weight */
     node[18]->input.tensors[2] = const_tensor[16]; /* data_bias */
 
-    /* Relu_Relu_48_19 */
+    /* Relu_Relu_39_4 */
     node[19]->input.tensors[0] = node[18]->output.tensors[0];
 
-    /* Conv_Conv_49_14 */
+    /* Conv_Conv_40_2 */
     node[20]->input.tensors[0] = node[19]->output.tensors[0];
     node[20]->input.tensors[1] = const_tensor[17]; /* data_weight */
     node[20]->input.tensors[2] = const_tensor[18]; /* data_bias */
 
-    /* Add_Add_50_10 */
+    /* Add_Add_41_1 */
     node[21]->input.tensors[0] = node[20]->output.tensors[0];
     node[21]->input.tensors[1] = node[15]->output.tensors[0];
-
-    /* Conv_Conv_51_30 */
-    node[22]->input.tensors[0] = node[21]->output.tensors[0];
-    node[22]->input.tensors[1] = const_tensor[19]; /* data_weight */
-    node[22]->input.tensors[2] = const_tensor[20]; /* data_bias */
-
-    /* Relu_Relu_52_24 */
-    node[23]->input.tensors[0] = node[22]->output.tensors[0];
-
-    /* Conv_Conv_53_18 */
-    node[24]->input.tensors[0] = node[23]->output.tensors[0];
-    node[24]->input.tensors[1] = const_tensor[21]; /* data_weight */
-    node[24]->input.tensors[2] = const_tensor[22]; /* data_bias */
-
-    /* Relu_Relu_54_13 */
-    node[25]->input.tensors[0] = node[24]->output.tensors[0];
-
-    /* Conv_Conv_55_9 */
-    node[26]->input.tensors[0] = node[25]->output.tensors[0];
-    node[26]->input.tensors[1] = const_tensor[23]; /* data_weight */
-    node[26]->input.tensors[2] = const_tensor[24]; /* data_bias */
-
-    /* Add_Add_56_6 */
-    node[27]->input.tensors[0] = node[26]->output.tensors[0];
-    node[27]->input.tensors[1] = node[21]->output.tensors[0];
-
-    /* Conv_Conv_57_23 */
-    node[28]->input.tensors[0] = node[27]->output.tensors[0];
-    node[28]->input.tensors[1] = const_tensor[25]; /* data_weight */
-    node[28]->input.tensors[2] = const_tensor[26]; /* data_bias */
-
-    /* Relu_Relu_58_17 */
-    node[29]->input.tensors[0] = node[28]->output.tensors[0];
-
-    /* Conv_Conv_59_12 */
-    node[30]->input.tensors[0] = node[29]->output.tensors[0];
-    node[30]->input.tensors[1] = const_tensor[27]; /* data_weight */
-    node[30]->input.tensors[2] = const_tensor[28]; /* data_bias */
-
-    /* Relu_Relu_60_8 */
-    node[31]->input.tensors[0] = node[30]->output.tensors[0];
-
-    /* Conv_Conv_61_5 */
-    node[32]->input.tensors[0] = node[31]->output.tensors[0];
-    node[32]->input.tensors[1] = const_tensor[29]; /* data_weight */
-    node[32]->input.tensors[2] = const_tensor[30]; /* data_bias */
-
-    /* Add_Add_62_3 */
-    node[33]->input.tensors[0] = node[32]->output.tensors[0];
-    node[33]->input.tensors[1] = node[27]->output.tensors[0];
-
-    /* Conv_Conv_63_16 */
-    node[34]->input.tensors[0] = node[33]->output.tensors[0];
-    node[34]->input.tensors[1] = const_tensor[31]; /* data_weight */
-    node[34]->input.tensors[2] = const_tensor[32]; /* data_bias */
-
-    /* Relu_Relu_64_11 */
-    node[35]->input.tensors[0] = node[34]->output.tensors[0];
-
-    /* Conv_Conv_65_7 */
-    node[36]->input.tensors[0] = node[35]->output.tensors[0];
-    node[36]->input.tensors[1] = const_tensor[33]; /* data_weight */
-    node[36]->input.tensors[2] = const_tensor[34]; /* data_bias */
-
-    /* Relu_Relu_66_4 */
-    node[37]->input.tensors[0] = node[36]->output.tensors[0];
-
-    /* Conv_Conv_67_2 */
-    node[38]->input.tensors[0] = node[37]->output.tensors[0];
-    node[38]->input.tensors[1] = const_tensor[35]; /* data_weight */
-    node[38]->input.tensors[2] = const_tensor[36]; /* data_bias */
-
-    /* Add_Add_68_1 */
-    node[39]->input.tensors[0] = node[38]->output.tensors[0];
-    node[39]->input.tensors[1] = node[33]->output.tensors[0];
 
 
     graph->output.tensors[0] = norm_tensor[0];
