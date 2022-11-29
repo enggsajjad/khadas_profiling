@@ -9,12 +9,14 @@ AUTOMATION FLOW
 
 ### What should be installed before executing notebook?
 Make sure that:
+
 1. Docker is installed
 2. Visual Studio Code and Python, Jupyter Extensions are installed.
 3. IMPORTANT!!! SSH files/passwords are copied to Khadas for a user.
 
 ### Requirements
 Pleaase install the following:
+
 1. python --version Python 3.10.6
 2. python -m pip install onnx matplotlib numpy onnx onnxruntime opencv-python Pillow ipykernel torch torchaudio torchvision nni pandas tensorboard docker pgi
 3. sudo apt-get install python-setuptools python-dev build-essential

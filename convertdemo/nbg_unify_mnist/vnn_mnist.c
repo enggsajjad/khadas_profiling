@@ -217,18 +217,18 @@ vsi_nn_graph_t * vnn_CreateMnist
   Tensor initialize
  -----------------------------------------*/
     attr.dtype.fmt = VSI_NN_DIM_FMT_NCHW;
-    /* @attach_Add_Add_41/out0_0:out0 */
+    /* @attach_Add_Add_68/out0_0:out0 */
     attr.size[0] = 320;
     attr.size[1] = 320;
     attr.size[2] = 128;
     attr.size[3] = 1;
     attr.dim_num = 4;
-    attr.dtype.scale = 0.004727776627987623;
-    attr.dtype.zero_point = 126;
+    attr.dtype.scale = 0.005075792782008648;
+    attr.dtype.zero_point = 127;
     attr.dtype.qnt_type = VSI_NN_QNT_TYPE_AFFINE_ASYMMETRIC;
     NEW_NORM_TENSOR(norm_tensor[0], attr, VSI_NN_TYPE_UINT8);
 
-    /* @input_22:out0 */
+    /* @input_40:out0 */
     attr.size[0] = 12800;
     attr.size[1] = 1024;
     attr.size[2] = 3;

@@ -9,7 +9,6 @@ echo "-------------------- QUANTIZATION SCRIPT"
 
 $tensorzone \
     --action quantization \
-    --debug  \
     --dtype float \
     --source text \
     --source-file dataset/dataset1.txt \

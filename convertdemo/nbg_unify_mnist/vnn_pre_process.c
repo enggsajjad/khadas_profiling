@@ -38,7 +38,7 @@ static void _load_input_meta()
         memset(&input_meta_tab[i].image.preprocess,
             VNN_PREPRO_NONE, sizeof(int32_t) * VNN_PREPRO_NUM);
     }
-        /* lid: input_22 */
+        /* lid: input_40 */
     input_meta_tab[0].image.preprocess[0] = VNN_PREPRO_REORDER;
     input_meta_tab[0].image.preprocess[1] = VNN_PREPRO_MEAN;
     input_meta_tab[0].image.preprocess[2] = VNN_PREPRO_SCALE;
